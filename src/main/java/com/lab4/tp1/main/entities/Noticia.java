@@ -55,7 +55,7 @@ public class Noticia implements Serializable {
 	@Temporal(TemporalType.TIMESTAMP)
 	private Date fechaPublicacion;
 	
-	@ManyToOne(fetch = FetchType.LAZY)
+	@ManyToOne(fetch = FetchType.EAGER)
 	@NotNull
 	private Empresa empresa;
 

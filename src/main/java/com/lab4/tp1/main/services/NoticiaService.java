@@ -53,12 +53,20 @@ public class NoticiaService implements BaseService<Noticia> {
 	
 
 	@Override
-	public Noticia update(Long id, Noticia noticia) throws Exception {
+	public Noticia update(Long id, Noticia noticiaEditada) throws Exception {
 		try {
 			Optional<Noticia> noticiaOptional = repository.findById(id);
-			noticia = noticiaOptional.get();
-			noticia.setId(id);
+			Noticia noticia = noticiaOptional.get();
 			
+			noticia.setId(id);
+			noticia.setTitulo(noticiaEditada.getTitulo());
+			noticia.setResumen(noticiaEditada.getResumen());
+			noticia.setImagen(noticiaEditada.getImagen());
+			noticia.setContenidoHTML(noticiaEditada.getContenidoHTML());
+			noticia.setPublicada(noticiaEditada.isPublicada());
+			noticia.setFechaPublicacion(noticiaEditada.getFechaPublicacion());
+			noticia.setEmpresa(noticiaEditada.getEmpresa());
+
 			return repository.save(noticia);
 			
 		} catch(Exception e) {
