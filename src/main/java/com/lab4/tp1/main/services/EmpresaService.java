@@ -67,6 +67,7 @@ public class EmpresaService implements BaseService<Empresa> {
 			empresa.setLongitud(empresaEditada.getLongitud());
 			empresa.setDomicilio(empresaEditada.getDomicilio());
 			empresa.setEmail(empresaEditada.getEmail());
+
 			
 			return repository.save(empresa);
 			

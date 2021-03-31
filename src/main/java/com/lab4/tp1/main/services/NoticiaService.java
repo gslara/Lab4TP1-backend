@@ -66,7 +66,7 @@ public class NoticiaService implements BaseService<Noticia> {
 			noticia.setPublicada(noticiaEditada.isPublicada());
 			noticia.setFechaPublicacion(noticiaEditada.getFechaPublicacion());
 			noticia.setEmpresa(noticiaEditada.getEmpresa());
-			
+
 			return repository.save(noticia);
 			
 		} catch(Exception e) {
