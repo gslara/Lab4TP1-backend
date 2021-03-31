@@ -53,11 +53,20 @@ public class EmpresaService implements BaseService<Empresa> {
 	
 
 	@Override
-	public Empresa update(Long id, Empresa empresa) throws Exception {
+	public Empresa update(Long id, Empresa empresaEditada) throws Exception {
 		try {
 			Optional<Empresa> empresaOptional = repository.findById(id);
-			empresa = empresaOptional.get();
+			Empresa empresa = empresaOptional.get();
+			
 			empresa.setId(id);
+			empresa.setDenominacion(empresaEditada.getDenominacion());
+			empresa.setTelefono(empresaEditada.getTelefono());
+			empresa.setHorarioAtencion(empresaEditada.getHorarioAtencion());
+			empresa.setQuienesSomos(empresaEditada.getQuienesSomos());
+			empresa.setLatitud(empresaEditada.getLatitud());
+			empresa.setLongitud(empresaEditada.getLongitud());
+			empresa.setDomicilio(empresaEditada.getDomicilio());
+			empresa.setEmail(empresaEditada.getEmail());
 			
 			return repository.save(empresa);
 			
