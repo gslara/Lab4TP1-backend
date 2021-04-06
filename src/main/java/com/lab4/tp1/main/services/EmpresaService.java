@@ -8,6 +8,7 @@ import org.springframework.stereotype.Service;
 
 import com.lab4.tp1.main.entities.Empresa;
 import com.lab4.tp1.main.repositories.EmpresaRepository;
+import com.lab4.tp1.main.repositories.NoticiaRepository;
 
 @Service
 public class EmpresaService implements BaseService<Empresa> {
@@ -15,6 +16,8 @@ public class EmpresaService implements BaseService<Empresa> {
 	@Autowired
 	private EmpresaRepository repository;
 	
+	@Autowired
+	private NoticiaRepository noticiaRepository;
 	
 	
 	@Override
@@ -81,6 +84,12 @@ public class EmpresaService implements BaseService<Empresa> {
 	public boolean delete(Long id) throws Exception {
 		try {
 			if(repository.existsById(id)) {
+				noticiaRepository.findAll().forEach((n) -> {
+					if(n.getEmpresa().getId() == id) {
+						noticiaRepository.deleteById(n.getId());
+					}
+				});
+				
 				repository.deleteById(id);
 				return true;
 			
